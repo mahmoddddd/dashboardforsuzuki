@@ -356,9 +356,9 @@ export function GlowCard({
   color?: string;
 }) {
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`relative group overflow-hidden ${className}`}>
       <div
-        className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
         style={{ background: `linear-gradient(135deg, ${color}40, ${color}20)` }}
       />
       <div className="relative glass rounded-2xl border border-white/30">

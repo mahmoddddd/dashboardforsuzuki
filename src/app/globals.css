@@ -28,7 +28,14 @@ body {
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #007BFF, #6C5CE7); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #0066dd, #5b4dd6); }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+body {
+  overflow-x: hidden;
+}
 
 /* ── Scroll progress bar ── */
 .scroll-progress {
@@ -92,10 +99,10 @@ html { scroll-behavior: smooth; }
 .gradient-border::before {
   content: "";
   position: absolute;
-  inset: -2px;
+  inset: 0;
   background: conic-gradient(from 0deg, #007BFF, #6C5CE7, #E30013, #FF8C00, #00C9A7, #007BFF);
   animation: borderRotate 4s linear infinite;
-  border-radius: 1.1rem;
+  border-radius: 1rem;
   z-index: -1;
 }
 .gradient-border::after {
@@ -103,7 +110,7 @@ html { scroll-behavior: smooth; }
   position: absolute;
   inset: 2px;
   background: white;
-  border-radius: 0.9rem;
+  border-radius: 0.85rem;
   z-index: -1;
 }
 

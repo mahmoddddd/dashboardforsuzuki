@@ -91,9 +91,9 @@ function SectionTitle({ icon: Icon, title, subtitle, id, color = "#007BFF" }: {
 
 function ChartCard({ children, className = "", glow }: { children: React.ReactNode; className?: string; glow?: string }) {
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`relative group overflow-hidden ${className}`}>
       {glow && (
-        <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"
           style={{ background: `linear-gradient(135deg, ${glow}30, ${glow}10)` }} />
       )}
       <div className="relative glass rounded-2xl p-4 sm:p-6 border border-white/40 hover:border-white/60
@@ -160,9 +160,9 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
       )}
 
       <aside className={`fixed top-0 h-full w-64 glass-dark text-white z-50
-        flex flex-col shadow-2xl transition-transform duration-300
+        flex flex-col shadow-2xl transition-all duration-300
         ${lang === "ar" ? "right-0" : "left-0"}
-        ${open ? "translate-x-0" : (lang === "ar" ? "translate-x-full" : "-translate-x-full")}
+        ${open ? "translate-x-0 visible" : (lang === "ar" ? "translate-x-full invisible lg:visible" : "-translate-x-full invisible lg:visible")}
         lg:translate-x-0`}>
 
         {/* Logo area */}
@@ -234,7 +234,7 @@ export default function Dashboard() {
   const { lang } = useLang();
 
   return (
-    <div className="flex relative">
+    <div className="flex relative overflow-x-hidden max-w-[100vw]">
       <ScrollProgress />
       <FloatingParticles />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
