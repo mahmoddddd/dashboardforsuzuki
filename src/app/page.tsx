@@ -234,7 +234,7 @@ export default function Dashboard() {
   const { lang } = useLang();
 
   return (
-    <div className="flex relative overflow-x-hidden max-w-[100vw]">
+    <div className="relative overflow-x-hidden w-full">
       <ScrollProgress />
       <FloatingParticles />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
@@ -254,7 +254,7 @@ export default function Dashboard() {
         <div className="w-8" />
       </div>
 
-      <main className={`flex-1 min-h-screen p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 relative z-10
+      <main className={`w-full min-h-screen p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 relative z-10
         ${lang === "ar" ? "lg:mr-64" : "lg:ml-64"}`}>
 
         {/* ═══════ Hero Header ═══════ */}
