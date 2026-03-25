@@ -29,32 +29,32 @@ function StatCard({ icon: Icon, label, value, numValue, suffix, sub, color, dela
   return (
     <AnimateOnScroll delay={delay} direction="up">
       <Tilt3D intensity={10}>
-        <div className="relative group overflow-hidden rounded-2xl p-5 sm:p-6 glass border border-white/40
+        <div className="relative group overflow-hidden rounded-2xl p-5 sm:p-7 glass animate-border-glow
           hover:border-white/60 transition-all duration-500">
           {/* Colored glow on hover */}
           <div className="absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl opacity-0
-            group-hover:opacity-40 transition-opacity duration-700"
+            group-hover:opacity-50 transition-opacity duration-700"
             style={{ background: color }} />
 
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs sm:text-sm text-gray-500 font-medium">{label}</span>
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center
-                shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm lg:text-base text-gray-600 font-semibold">{label}</span>
+              <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center
+                shadow-lg animate-icon-bounce"
                 style={{ background: `linear-gradient(135deg, ${gradient})` }}>
-                <Icon size={20} className="text-white" />
+                <Icon size={22} className="text-white" />
               </div>
             </div>
-            <p className="text-2xl sm:text-3xl font-bold text-gray-900 stat-glow">
+            <p className="text-3xl lg:text-4xl font-extrabold text-gray-900 stat-glow">
               {numValue != null ? (
                 <AnimatedCounter target={numValue} suffix={suffix || ""} decimals={suffix === "M" || suffix === "" ? 2 : 0} duration={2200} />
               ) : value}
             </p>
-            {sub && <p className="text-xs text-gray-400 mt-1.5">{sub}</p>}
+            {sub && <p className="text-sm text-gray-500 mt-2 font-medium">{sub}</p>}
           </div>
 
-          {/* Shimmer line */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          {/* Continuous shimmer line */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 shimmer-continuous"
             style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }} />
         </div>
       </Tilt3D>
@@ -70,15 +70,15 @@ function SectionTitle({ icon: Icon, title, subtitle, id, color = "#007BFF" }: {
   return (
     <AnimateOnScroll direction="up">
       <div id={id} className="mb-8 scroll-mt-24">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center
-            shadow-lg glow-pulse"
-            style={{ background: `linear-gradient(135deg, ${color}, ${color}dd)` }}>
-            <Icon size={22} className="text-white" />
+        <div className="flex items-center gap-4 mb-3">
+          <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center
+            shadow-lg glow-pulse animate-icon-bounce"
+            style={{ background: `linear-gradient(135deg, ${color}, ${color}cc)` }}>
+            <Icon size={24} className="text-white" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{title}</h2>
-            <p className="text-xs sm:text-sm text-gray-400">{subtitle}</p>
+            <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900">{title}</h2>
+            <p className="text-sm lg:text-base text-gray-500 font-medium">{subtitle}</p>
           </div>
         </div>
         <div className="section-divider" />
@@ -94,10 +94,10 @@ function ChartCard({ children, className = "", glow }: { children: React.ReactNo
     <div className={`relative group overflow-hidden ${className}`}>
       {glow && (
         <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"
-          style={{ background: `linear-gradient(135deg, ${glow}30, ${glow}10)` }} />
+          style={{ background: `linear-gradient(135deg, ${glow}40, ${glow}20)` }} />
       )}
-      <div className="relative glass rounded-2xl p-4 sm:p-6 border border-white/40 hover:border-white/60
-        transition-all duration-500 hover:shadow-xl hover:shadow-black/5">
+      <div className="relative glass rounded-2xl p-5 sm:p-7 animate-border-glow
+        transition-all duration-500 hover:shadow-xl hover:shadow-black/8">
         {children}
       </div>
     </div>
@@ -290,11 +290,11 @@ export default function Dashboard() {
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
               <TypeWriter text={t.heroTitle[lang]} speed={40} />
             </h1>
 
-            <p className="text-sm sm:text-base lg:text-lg text-gray-300/90 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-200 max-w-2xl leading-relaxed">
               {t.heroDesc[lang]}
             </p>
 
@@ -306,9 +306,9 @@ export default function Dashboard() {
                 { val: "10", label: lang === "ar" ? "موديل" : "Models" },
               ].map((s, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300
+                  <span className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-300
                     bg-clip-text text-transparent">{s.val}</span>
-                  <span className="text-xs text-gray-400">{s.label}</span>
+                  <span className="text-sm text-gray-300 font-medium">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -345,7 +345,7 @@ export default function Dashboard() {
                       flex items-center justify-center shadow-lg shadow-red-500/20">
                       <AlertTriangle size={18} className="text-white" />
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-red-600">{t.problemLabel[lang]}</h3>
+                    <h3 className="text-lg lg:text-xl font-extrabold text-red-600">{t.problemLabel[lang]}</h3>
                   </div>
                   <StaggerChildren className="space-y-3" staggerMs={150}>
                     {t.problems[lang].map((item, i) => (
@@ -353,7 +353,7 @@ export default function Dashboard() {
                         hover:bg-red-50 hover:border-red-200 transition-all duration-300 group">
                         <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-red-500 to-red-600 text-white flex items-center
                           justify-center text-xs font-bold shrink-0 shadow-sm group-hover:scale-110 transition-transform">{i + 1}</span>
-                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{item}</p>
+                        <p className="text-sm lg:text-base text-gray-800 leading-relaxed">{item}</p>
                       </div>
                     ))}
                   </StaggerChildren>
@@ -371,7 +371,7 @@ export default function Dashboard() {
                       flex items-center justify-center shadow-lg shadow-emerald-500/20">
                       <Target size={18} className="text-white" />
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-emerald-600">{t.objectivesLabel[lang]}</h3>
+                    <h3 className="text-lg lg:text-xl font-extrabold text-emerald-600">{t.objectivesLabel[lang]}</h3>
                   </div>
                   <StaggerChildren className="space-y-3" staggerMs={150}>
                     {t.objectives[lang].map((item, i) => (
@@ -381,7 +381,7 @@ export default function Dashboard() {
                           flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
                           <CheckCircle size={14} className="text-white" />
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{item}</p>
+                        <p className="text-sm lg:text-base text-gray-800 leading-relaxed">{item}</p>
                       </div>
                     ))}
                   </StaggerChildren>
@@ -404,10 +404,10 @@ export default function Dashboard() {
               <Tilt3D intensity={6}>
                 <ChartCard glow={card.color}>
                   <div className={`h-1.5 rounded-full mb-4 bg-gradient-to-r ${card.gradient} shadow-sm`} />
-                  <h4 className="font-bold text-gray-800 mb-3">{card.title}</h4>
+                  <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-3">{card.title}</h4>
                   <div className="space-y-2.5">
                     {card.items.map((item, j) => (
-                      <p key={j} className="text-sm text-gray-600 flex items-center gap-2.5">
+                      <p key={j} className="text-base text-gray-700 flex items-center gap-2.5">
                         <span className="w-2 h-2 rounded-full shadow-sm" style={{ background: card.color }}></span>
                         {item}
                       </p>
@@ -421,11 +421,11 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-12">
           <AnimateOnScroll direction="right"><ChartCard glow="#6C5CE7">
-            <h4 className="font-bold text-gray-800 mb-4">{t.edaCategoryDist[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.edaCategoryDist[lang]}</h4>
             <CategoryPieChart />
           </ChartCard></AnimateOnScroll>
           <AnimateOnScroll direction="left"><ChartCard glow="#00C9A7">
-            <h4 className="font-bold text-gray-800 mb-4">{t.edaQualityCriteria[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.edaQualityCriteria[lang]}</h4>
             <div className="grid grid-cols-2 gap-3 mt-2">
               {[
                 { label: "Accuracy", ar: t.accuracy[lang], color: "#007BFF" },
@@ -460,13 +460,13 @@ export default function Dashboard() {
         <AnimateOnScroll direction="up"><div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12">
           <ChartCard className="lg:col-span-2" glow="#007BFF">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-              <h4 className="font-bold text-gray-800">{t.globalTrend[lang]}</h4>
+              <h4 className="text-base lg:text-lg font-bold text-gray-900">{t.globalTrend[lang]}</h4>
               <InsightBadge text={t.globalGrowth[lang]} type="success" />
             </div>
             <GlobalSalesChart />
           </ChartCard>
           <ChartCard glow="#6C5CE7">
-            <h4 className="font-bold text-gray-800 mb-4">{t.globalKeyPoints[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.globalKeyPoints[lang]}</h4>
             <div className="space-y-3">
               {[
                 { icon: ArrowUpRight, title: t.globalHighest[lang], desc: t.globalHighestDesc[lang], color: "#007BFF" },
@@ -482,9 +482,9 @@ export default function Dashboard() {
                         style={{ background: `${item.color}15` }}>
                         <item.icon size={14} style={{ color: item.color }} />
                       </div>
-                      <span className="text-xs sm:text-sm font-bold" style={{ color: item.color }}>{item.title}</span>
+                      <span className="text-sm lg:text-base font-bold" style={{ color: item.color }}>{item.title}</span>
                     </div>
-                    <p className="text-xs text-gray-600">{item.desc}</p>
+                    <p className="text-sm text-gray-700">{item.desc}</p>
                   </div>
                 </AnimateOnScroll>
               ))}
@@ -497,11 +497,11 @@ export default function Dashboard() {
 
         <AnimateOnScroll direction="up"><div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12">
           <ChartCard className="lg:col-span-2" glow="#E30013">
-            <h4 className="font-bold text-gray-800 mb-4">{t.regionChartTitle[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.regionChartTitle[lang]}</h4>
             <RegionPieChart />
           </ChartCard>
           <ChartCard glow="#FF8C00">
-            <h4 className="font-bold text-gray-800 mb-4">{t.regionAnalysis[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.regionAnalysis[lang]}</h4>
             <div className="space-y-2.5">
               {[
                 { region: t.regionIndia[lang], pct: "55.1%", val: "1.79M", color: "#E30013" },
@@ -515,10 +515,10 @@ export default function Dashboard() {
                     border border-white/30 hover:bg-white/70 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2">
                       <div className="w-3.5 h-3.5 rounded-full shadow-sm" style={{ background: r.color }} />
-                      <span className="text-xs sm:text-sm font-medium text-gray-700">{r.region}</span>
+                      <span className="text-sm lg:text-base font-medium text-gray-800">{r.region}</span>
                     </div>
                     <div className={lang === "ar" ? "text-left" : "text-right"}>
-                      <span className="text-xs sm:text-sm font-bold text-gray-900">{r.pct}</span>
+                      <span className="text-sm lg:text-base font-bold text-gray-900">{r.pct}</span>
                       <span className={`text-xs text-gray-400 ${lang === "ar" ? "mr-2" : "ml-2"}`}>{r.val}</span>
                     </div>
                   </div>
@@ -540,7 +540,7 @@ export default function Dashboard() {
 
         <AnimateOnScroll direction="up"><div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12">
           <ChartCard className="lg:col-span-2" glow="#FF8C00">
-            <h4 className="font-bold text-gray-800 mb-4">{t.modelsChartTitle[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.modelsChartTitle[lang]}</h4>
             <TopModelsChart />
           </ChartCard>
           <div className="space-y-3">
@@ -565,8 +565,8 @@ export default function Dashboard() {
                       <Car size={16} style={{ color: m.color }} />
                       <span className="font-bold text-gray-800">{m.model}</span>
                     </div>
-                    <p className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: m.color }}>{m.sales}</p>
-                    <p className="text-xs text-gray-400">{t.modelsUnit[lang]}</p>
+                    <p className="text-3xl lg:text-4xl font-extrabold mb-1" style={{ color: m.color }}>{m.sales}</p>
+                    <p className="text-sm text-gray-500 font-medium">{t.modelsUnit[lang]}</p>
 
                     {/* Hover glow */}
                     <div className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -583,7 +583,7 @@ export default function Dashboard() {
 
         <AnimateOnScroll direction="up"><ChartCard className="mb-6" glow="#007BFF">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <h4 className="font-bold text-gray-800 text-sm sm:text-base">{t.egyptPriceTitle[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 text-sm sm:text-base">{t.egyptPriceTitle[lang]}</h4>
             <div className="flex gap-2">
               <InsightBadge text="Hatchback" type="info" />
               <InsightBadge text="SUV" type="warning" />
@@ -594,9 +594,9 @@ export default function Dashboard() {
         </ChartCard></AnimateOnScroll>
 
         <AnimateOnScroll direction="up" delay={200}><ChartCard className="mb-10 sm:mb-12 overflow-hidden" glow="#00C9A7">
-          <h4 className="font-bold text-gray-800 mb-4">{t.egyptTableTitle[lang]}</h4>
+          <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.egyptTableTitle[lang]}</h4>
           <div className="overflow-x-auto -mx-4 sm:mx-0 rounded-xl">
-            <table className="w-full text-xs sm:text-sm min-w-[500px]">
+            <table className="w-full text-sm lg:text-base min-w-[500px]">
               <thead>
                 <tr className="bg-gradient-to-r from-[#0a1628] to-[#162240] text-white">
                   <th className={`px-3 sm:px-4 py-3.5 ${lang === "ar" ? "text-right rounded-tr-xl" : "text-left rounded-tl-xl"}`}>{t.egyptThModel[lang]}</th>
@@ -637,11 +637,11 @@ export default function Dashboard() {
 
         <AnimateOnScroll direction="up"><div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12">
           <ChartCard className="lg:col-span-2" glow="#FF8C00">
-            <h4 className="font-bold text-gray-800 mb-4">{t.ratingsChartTitle[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.ratingsChartTitle[lang]}</h4>
             <RatingsChart />
           </ChartCard>
           <ChartCard glow="#6C5CE7">
-            <h4 className="font-bold text-gray-800 mb-4">{t.ratingsTopTitle[lang]}</h4>
+            <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-4">{t.ratingsTopTitle[lang]}</h4>
             <div className="space-y-4">
               {[...egyptModels].sort((a, b) => b.rating - a.rating).slice(0, 4).map((m, i) => (
                 <AnimateOnScroll key={i} delay={i * 100} direction="right">
@@ -661,11 +661,11 @@ export default function Dashboard() {
               ))}
             </div>
             <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50/80 border border-amber-200/50">
-              <p className="text-sm font-bold text-amber-800 mb-1">{t.ratingsAvgTitle[lang]}</p>
+              <p className="text-base font-bold text-amber-800 mb-1">{t.ratingsAvgTitle[lang]}</p>
               <div className="flex items-center gap-2">
-                <span className="text-4xl font-bold bg-gradient-to-r from-amber-500 to-orange-500
+                <span className="text-5xl font-extrabold bg-gradient-to-r from-amber-500 to-orange-500
                   bg-clip-text text-transparent">{stats.avgRating}</span>
-                <span className="text-gray-400 text-lg">/ 5</span>
+                <span className="text-gray-500 text-xl">/ 5</span>
               </div>
             </div>
           </ChartCard>
@@ -684,7 +684,7 @@ export default function Dashboard() {
                     flex items-center justify-center shadow-lg shadow-emerald-500/20">
                     <Lightbulb size={18} className="text-white" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-emerald-600">{t.recsLabel[lang]}</h3>
+                  <h3 className="text-lg lg:text-xl font-extrabold text-emerald-600">{t.recsLabel[lang]}</h3>
                 </div>
                 <StaggerChildren className="space-y-3" staggerMs={120}>
                   {t.recs[lang].map((rec, i) => (
@@ -693,7 +693,7 @@ export default function Dashboard() {
                       <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 text-white
                         flex items-center justify-center text-xs font-bold shrink-0 shadow-sm
                         group-hover:scale-110 transition-transform">{i + 1}</span>
-                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{rec}</p>
+                      <p className="text-sm lg:text-base text-gray-800 leading-relaxed">{rec}</p>
                     </div>
                   ))}
                 </StaggerChildren>
@@ -709,7 +709,7 @@ export default function Dashboard() {
                     flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <Shield size={18} className="text-white" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-blue-600">{t.conclusionLabel[lang]}</h3>
+                  <h3 className="text-lg lg:text-xl font-extrabold text-blue-600">{t.conclusionLabel[lang]}</h3>
                 </div>
                 <StaggerChildren className="space-y-3" staggerMs={100}>
                   {[
@@ -727,9 +727,9 @@ export default function Dashboard() {
                           style={{ background: `${item.color}15` }}>
                           <item.icon size={14} style={{ color: item.color }} />
                         </div>
-                        <span className="text-xs sm:text-sm font-bold" style={{ color: item.color }}>{item.title}</span>
+                        <span className="text-sm lg:text-base font-bold" style={{ color: item.color }}>{item.title}</span>
                       </div>
-                      <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                      <p className="text-sm text-gray-700 leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </StaggerChildren>
@@ -751,8 +751,8 @@ export default function Dashboard() {
                 flex items-center justify-center shadow-lg shadow-blue-500/30">
                 <Sparkles size={24} className="text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">{t.footerTitle[lang]}</h3>
-              <p className="text-gray-400 text-xs sm:text-sm">{t.footerSub[lang]}</p>
+              <h3 className="text-2xl sm:text-3xl font-extrabold mb-2">{t.footerTitle[lang]}</h3>
+              <p className="text-gray-300 text-sm sm:text-base">{t.footerSub[lang]}</p>
               <div className="mt-4 h-0.5 w-20 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-50" />
               <p className="text-gray-500 text-xs mt-4">{t.footerSmall[lang]}</p>
             </div>
